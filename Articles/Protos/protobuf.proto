@@ -14,15 +14,15 @@ enum ArticleType{
 
 message ArticleView{
 	  google.protobuf.Timestamp date_time = 1;
-	  optional string userName=2;
+	  optional string userName = 2;
 }
 
 message Article{
 	string title = 1;
 	string text = 2;
 	string date_of_release = 3;
-	string author =  4;
-	ArticleType type = 5[default=hybrid];
-	repeated ArticleView views=6;
+	optional string author =  4[default = "Vira"];
+	ArticleType type = 5[default = hybrid];
+	repeated ArticleView views = 6;
 }
 
