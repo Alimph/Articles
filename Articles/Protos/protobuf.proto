@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option csharp_namespace = "Articles.Protos";
+
+import "google/protobuf/timestamp.proto";
+
+package vira;
+
+enum ArticleType{
+	text = 0;
+	text_image = 1;
+	hybrid = 2;
+}
+
+message ArticleView{
+	  google.protobuf.Timestamp date_time = 1;
+	  optional string userName=2;
+}
+
+message Article{
+	string title = 1;
+	string text = 2;
+	string date_of_release = 3;
+	string author =  4;
+	ArticleType type = 5[default=hybrid];
+	repeated ArticleView views=6;
+}
+
