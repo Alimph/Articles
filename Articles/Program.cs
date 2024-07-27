@@ -1,3 +1,5 @@
+using Articles.Services;
+
 namespace Articles
 {
     public class Program
@@ -17,6 +19,9 @@ namespace Articles
 
             app.UseAuthorization();
 
+            //grpc route service
+            app.MapGrpcService<ArticleApi>();
+            
             app.MapControllers();
 
             app.Run();
