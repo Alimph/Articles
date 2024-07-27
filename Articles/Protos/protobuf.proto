@@ -34,15 +34,18 @@ message Test{
 message DefaultResponse{
 	google.protobuf.Any data= 1;
 	string message = 2;
-
 }
 
 message ArticleList{
 	repeated Article items = 1;
 }
 
+message GetArticleCount{
+	int32 count = 1;
+}
+
 service ArticleService{
 	rpc Create(Article) returns(DefaultResponse);
-	rpc GetAll(Article) returns(stream ArticleList);
+	rpc GetAll(GetArticleCount) returns(stream Article);
 }
 
