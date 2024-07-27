@@ -3,6 +3,7 @@ syntax = "proto3";
 option csharp_namespace = "Articles.Protos";
 
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/any.proto";
 
 package vira;
 
@@ -21,8 +22,27 @@ message Article{
 	string title = 1;
 	string text = 2;
 	string date_of_release = 3;
-	optional string author =  4[default = "Vira"];
-	ArticleType type = 5[default = hybrid];
-	repeated ArticleView views = 6;
+	ArticleType type = 5;
+	optional string author =  6;
+    repeated  ArticleView views = 7;
+}
+
+message Test{
+	map<int32,string> dic = 1;
+}
+
+message DefaultResponse{
+	google.protobuf.Any data= 1;
+	string message = 2;
+
+}
+
+message ArticleList{
+	repeated Article items = 1;
+}
+
+service ArticleService{
+	rpc Create(Article) returns(DefaultResponse);
+	rpc GetAll(Article) returns(stream ArticleList);
 }
 

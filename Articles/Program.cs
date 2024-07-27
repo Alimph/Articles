@@ -17,7 +17,6 @@ namespace Articles
 
             app.UseAuthorization();
 
-
             app.MapControllers();
 
             app.Run();
