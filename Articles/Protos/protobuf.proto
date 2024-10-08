@@ -47,5 +47,6 @@ message GetArticleCount{
 service ArticleService{
 	rpc Create(Article) returns(DefaultResponse);
 	rpc GetAll(GetArticleCount) returns(stream Article);
+	rpc SayHello(GetArticleCount) returns(Article);
 }
 

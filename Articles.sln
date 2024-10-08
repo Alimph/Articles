@@ -5,7 +5,7 @@ VisualStudioVersion = 17.9.34714.143
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Articles", "Articles\Articles.csproj", "{EE9125C8-BDDF-4099-BEB6-EDC10999B193}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Weblog", "Weblog\Weblog.csproj", "{36F8D344-A2DE-4C06-80A0-BFD5EE8E0199}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Weblog", "Weblog\Weblog.csproj", "{36F8D344-A2DE-4C06-80A0-BFD5EE8E0199}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

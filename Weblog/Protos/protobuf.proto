@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+option csharp_namespace = "Weblog.Protos";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/any.proto";
+
+package vira;
+
+enum ArticleType{
+	text = 0;
+	text_image = 1;
+	hybrid = 2;
+}
+
+message ArticleView{
+	  google.protobuf.Timestamp date_time = 1;
+	  optional string userName = 2;
+}
+
+message Article{
+	string title = 1;
+	string text = 2;
+	string date_of_release = 3;
+	ArticleType type = 5;
+	optional string author =  6;
+    repeated  ArticleView views = 7;
+}
+
+message Test{
+	map<int32,string> dic = 1;
+}
+
+message DefaultResponse{
+	google.protobuf.Any data= 1;
+	string message = 2;
+}
+
+message ArticleList{
+	repeated Article items = 1;
+}
+
+message GetArticleCount{
+	int32 count = 1;
+}
+
+service ArticleService{
+	rpc Create(Article) returns(DefaultResponse);
+	rpc GetAll(GetArticleCount) returns(stream Article);
+	rpc SayHello(GetArticleCount) returns(Article);
+}
+

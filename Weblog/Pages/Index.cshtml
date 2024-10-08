@@ -5,6 +5,49 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    @foreach (var item in Model.Articles)
+    {
+        <div class="card text-center mb-2">
+            <div class="card-header">
+                @item.Title
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">@item.Author</h5>
+                <p class="card-text">@item.Text</p>
+                <a href="#" class="btn btn-primary">ویرایش</a>
+            </div>
+            <div class="card-footer text-muted">
+                @item.DateOfRelease
+            </div>
+        </div>
+    }
 </div>
+
+<script>
+    var response = ''
+    const regex = /(\{([\s\S]*?)\})\"/
+
+    // Establish the AJAX connection
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', '/Streamendpoint', true);
+
+    // Handle the streaming response
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 3) { // Intermediate response data available
+           
+        } else if (xhr.readyState === 4) { // Request complete
+            let data = `${xhr.responseText}${xhr.responseText.endsWith(']') ? '' : ']'}`
+            if (data) {
+                data = JSON.parse(data);
+                $.each(data, function (i, v) {
+                    console.warn(v.title)
+                })
+                data = '';
+            }
+        }
+    };
+
+    // Start the request
+    xhr.send();
+</script>
