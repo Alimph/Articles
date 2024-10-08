@@ -2,6 +2,7 @@ using Grpc.Core;
 using Grpc.Net.Client;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Collections.Generic;
 using Weblog.Protos;
 
 namespace Weblog.Pages
@@ -24,7 +25,7 @@ namespace Weblog.Pages
 
             var client = new ArticleService.ArticleServiceClient(channel);
 
-            using var call = client.GetAll(new GetArticleCount { Count = 25 });
+            using var call = client.GetAll(new GetArticleCount { Count = 1 });
 
             //var cancellationToken = new CancellationTokenSource(TimeSpan.FromSeconds(10));
             //or none
@@ -34,8 +35,22 @@ namespace Weblog.Pages
             }
         }
 
+        //public async IAsyncEnumerable<Article> OnGetStreamendpoint()
+        //{
+        //    using var channel = GrpcChannel.ForAddress("https://localhost:7013");
 
+        //    var client = new ArticleService.ArticleServiceClient(channel);
 
+        //    using var call = client.GetAll(new GetArticleCount { Count = 25 });
 
+        //    //var cancellationToken = new CancellationTokenSource(TimeSpan.FromSeconds(10));
+        //    //or none
+        //    await foreach (var article in call.ResponseStream.ReadAllAsync(CancellationToken.None))
+        //    {
+        //       yield return(article);
+        //    }
+            
+        //    //return new JsonResult(Articles);
+        //}
     }
 }

@@ -4,8 +4,7 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-
+<div class="text-center row">
     @foreach (var item in Model.Articles)
     {
         <div class="card text-center mb-2">
@@ -15,7 +14,7 @@
             <div class="card-body">
                 <h5 class="card-title">@item.Author</h5>
                 <p class="card-text">@item.Text</p>
-                <a href="#" class="btn btn-primary">ویرایش</a>
+                <a href="#" class="btn btn-warning">Edit</a>
             </div>
             <div class="card-footer text-muted">
                 @item.DateOfRelease
@@ -30,22 +29,23 @@
 
     // Establish the AJAX connection
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', '/Streamendpoint', true);
+    xhr.open('GET', '/StreamEndpoint', true);
 
     // Handle the streaming response
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 3) { // Intermediate response data available
-           
-        } else if (xhr.readyState === 4) { // Request complete
-            let data = `${xhr.responseText}${xhr.responseText.endsWith(']') ? '' : ']'}`
-            if (data) {
-                data = JSON.parse(data);
-                $.each(data, function (i, v) {
-                    console.warn(v.title)
-                })
-                data = '';
-            }
+            console.log(xhr.responseText);
         }
+        // else if (xhr.readyState === 4) { // Request complete
+        //     let data = xhr.responseText//`${xhr.responseText}${xhr.responseText.endsWith(']') ? '' : ']'}`
+        //     if (data) {
+        //         data = JSON.parse(data);
+        //         $.each(data, function (i, v) {
+        //             //console.warn(v.title)
+        //         })
+        //         data = '';
+        //     }
+        // }
     };
 
     // Start the request

@@ -16,7 +16,7 @@ namespace Articles.Data
             if (_items is null)
             {
                 _items = new List<Article>();   
-                var faker = new Faker("fa");
+                var faker = new Faker("en");
                 for (int i = 0; i < 30; i++)
                 {
                       Add(
